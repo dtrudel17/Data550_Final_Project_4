@@ -1,0 +1,42 @@
+---
+title: "Final_Project"
+author: "Daniel Trudell"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+```{r, set-chunk-opts, echo = FALSE, eval = TRUE, include=FALSE}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+here::i_am("Final_Project.Rmd")
+```
+
+
+
+## Introduction
+
+Recently, mandatory vaccinations have come under fire. However, two decades of policy effort aimed at increasing the vaccination coverage of various vaccines among the youth population. The goal of this analysis is to assess the efforts of programs increasing vaccination coverage among various subgroups and identify which groups future should target.
+
+The data for this analysis comes from the Center for Disease Control (CDC) and is public record. The dataset contains information on estimated vaccine coverage among adolescents aged 13-17. Estimated vaccination coverages are further subsetted based on various characteristics including, vaccine type, number of doses, geography/location, survey year, survey dimension (type & value), 95% CI, and sample size.
+
+This analysis specifically focuses on how full vaccination coverages has changed over time for each vaccine included in the data. Only estimates including those from the age 13-17 who have received the number of doses required for full coverage are considered. Based on the results, recommendations will be made for which vaccination types should increase the number of implemented programs to increase coverage. Additionally, additional sub-analyses on vaccines with low coverages will be performed to determine which geographic locations should be targetted.
+
+## Tabular Analysis
+
+The table below shows the weighted averaages of vaccine coverage by vaccine type and year. Patrially vaccinated individuals are excluded.
+```{r, table1, fig.align = 'center'}
+library(flextable)
+table1<- readRDS(file = here::here("output/table_1.rds"))
+table1
+```
+
+
+## Graphical Analysis
+
+The line chart below shows the weighted averaages of vaccine coverage by vaccine type over time. Patrially vaccinated individuals are excluded. There is no data for greater than or equal to two hepatitis doses prior to 2020.
+```{r, create-line-chart, fig.align = 'center'}
+knitr::include_graphics(here::here("output/graph1.png"))
+```
